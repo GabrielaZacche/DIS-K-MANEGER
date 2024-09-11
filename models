@@ -1,0 +1,16 @@
+package com.diskmgr.models;
+
+import javax.persistence.*;
+
+@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String contact;
+    private String address;
+
+    // Getters and Setters
+}
