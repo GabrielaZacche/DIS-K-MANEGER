@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dis-K Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Dis-K Manager</h1>
+    <div id="app">
+        <!-- Conteúdo dinâmico aqui -->
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchCustomers();
+});
+
+function fetchCustomers() {
+    fetch('/api/customers')
+        .then(response => response.json())
+        .then(customers => {
+            const appDiv = document.getElementById('app');
+            customers.forEach(customer => {
+                const customerDiv = document.createElement('div');
+                customerDiv.innerHTML = `<p>${customer.name} - ${customer.contact}</p>`;
+                appDiv.appendChild(customerDiv);
+            });
+        });
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#app div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
